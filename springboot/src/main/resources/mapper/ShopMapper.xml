@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chan.dao.ShopDAO" >
+  <resultMap id="BaseResultMap" type="com.chan.model.Shop" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="good" property="good" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="DOUBLE" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="datetime" property="datetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, good, money, number, datetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByModel" resultMap="BaseResultMap" parameterType="com.chan.model.Shop" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    <where >
+      <if test="id != null" >
+        and id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="good != null" >
+        and good = #{good,jdbcType=VARCHAR}
+      </if>
+      <if test="money != null" >
+        and money = #{money,jdbcType=DOUBLE}
+      </if>
+      <if test="number != null" >
+        and number = #{number,jdbcType=INTEGER}
+      </if>
+      <if test="datetime != null" >
+        and datetime = #{datetime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+  <select id="selectByModelLike" resultMap="BaseResultMap" parameterType="com.chan.model.Shop" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    <where >
+      <if test="id != null" >
+        and id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="good != null" >
+        and good like CONCAT('%',#{good,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="money != null" >
+        and money = #{money,jdbcType=DOUBLE}
+      </if>
+      <if test="number != null" >
+        and number = #{number,jdbcType=INTEGER}
+      </if>
+      <if test="datetime != null" >
+        and datetime = #{datetime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shop
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chan.model.Shop" keyProperty="id" useGeneratedKeys="true" >
+    insert into shop (id, good, money, 
+      number, datetime)
+    values (#{id,jdbcType=INTEGER}, #{good,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE}, 
+      #{number,jdbcType=INTEGER}, #{datetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chan.model.Shop" keyProperty="id" useGeneratedKeys="true" >
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="good != null" >
+        good,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="datetime != null" >
+        datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="good != null" >
+        #{good,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="datetime != null" >
+        #{datetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chan.model.Shop" >
+    update shop
+    <set >
+      <if test="good != null" >
+        good = #{good,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="datetime != null" >
+        datetime = #{datetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chan.model.Shop" >
+    update shop
+    set good = #{good,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DOUBLE},
+      number = #{number,jdbcType=INTEGER},
+      datetime = #{datetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="deleteLogicByIds" >
+    update shop set deleteFlag = #{deleteFlag,jdbcType=INTEGER} where id in  <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">#{item}</foreach> 
+  </update>
+</mapper>
