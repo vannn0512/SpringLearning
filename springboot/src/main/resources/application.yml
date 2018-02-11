@@ -1,6 +1,6 @@
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.chan.model
+  typeAliasesPackage: com.chan.dao
 
 spring:
   datasource:
@@ -8,7 +8,8 @@ spring:
     url: jdbc:mysql://localhost:3306/test?useUnicode:true&characterEncoding:utf-8
     username: root
     password: 12345678
-    
+
+    #Druid配置
     druid:
       initial-size: 5                       #初始化连接:连接池启动时创建的初始化连接数量
       max-active: 50                        #连接池的最大数据库连接数。设为0表示无限制
@@ -25,6 +26,33 @@ spring:
       time-between-eviction-runs-millis: 18800      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
       min-evictable-idle-time-millis: 300000      # 配置一个连接在池中最小生存的时间，单位是毫秒
       filters: stat,wall
+
+  #Freemarker配置
+  freemarker:
+      template-loader-path: classpath:/templates/
+      cache: false
+      charset: UTF-8
+      check-template-location: true
+      content-type: text/html
+      expose-request-attributes: true
+      expose-session-attributes: true
+      request-context-attribute: request
+      suffix: .ftl
+
+  mvc:
+    static-path-pattern : /static/**
+  resources:
+    static-locations: classpath:/static/
+
+logging:
+  level:
+    com:
+      chan:
+        dao:  debug
+    org:
+      spring: info
+
+
 
 Advertise:
   name: "阿牛"

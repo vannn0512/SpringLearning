@@ -2,10 +2,10 @@ package com.chan.dao;
 
 import com.chan.model.Shop;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Mapper()
 public interface ShopDAO {
     int deleteByPrimaryKey(Integer id);
 

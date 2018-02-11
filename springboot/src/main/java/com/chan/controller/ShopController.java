@@ -3,7 +3,9 @@ package com.chan.controller;
 import com.chan.model.Shop;
 import com.chan.service.IShopService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -26,9 +28,10 @@ public class ShopController {
   }
 
   @RequestMapping("/{id}")
-  @ResponseBody
-  public Shop getShopById(@PathVariable Integer id) {
-    return shopService.getShopById(id);
+  public Object getShopById(@PathVariable Integer id,ModelMap model) {
+    Shop shop = shopService.getShopById(id);
+    model.put("tempGood", shop);
+    return new ModelAndView("goodsDetail");
   }
 
 }
