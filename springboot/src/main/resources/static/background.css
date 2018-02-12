@@ -1,3 +1,22 @@
-#grad {
+.grad {
     background: linear-gradient(red, blue); /* 标准的语法 */
+}
+
+.goods {
+    border: 1px solid #ccc;
+    width:200px;
+    padding:10px;
+    background: linear-gradient(red, blue); /* 标准的语法 */
+}
+
+.item {
+    background-color: #FFF2E8;
+    width: 200px;
+    line-height: 30px
+}
+
+.tip {
+    color: #6c6c6c;
+    font-size: 14px;
+    padding-right:10px;
 }

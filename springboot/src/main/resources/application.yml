@@ -46,11 +46,12 @@ spring:
 
 logging:
   level:
+    root: INFO
     com:
-      chan:
-        dao:  debug
+      chan: INFO
     org:
-      spring: info
+      springframework:
+        web:  DEBUG
 
 
 
